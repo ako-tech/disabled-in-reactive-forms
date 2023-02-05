@@ -1,0 +1,52 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+fieldset {
+  padding: var(--base-separation);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  legend {
+    font-weight: bold;
+    font-size: 0.8rem;
+  }
+}
+
+div {
+  display: flex;
+  gap: var(--base-separation);
+  margin-bottom: var(--base-separation);
+
+  label {
+    flex-direction: row;
+    max-width: 50%;
+    background: #e8e8e8;
+    padding: var(--half-separation);
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    gap: var(--half-separation);
+
+    &:has(input:checked) {
+      background: #62a78e;
+      color: white;
+    }
+  }
+}
+
+label {
+  font-size: 0.7rem;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+
+  input[type="text"] {
+    border: 1px solid #acacac;
+    height: 30px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    padding: var(--half-separation);
+  }
+}

@@ -1,0 +1,26 @@
+<form [formGroup]="deliveryForm">
+  <fieldset>
+    <legend>Datos de Entrega</legend>
+    <div>
+      <label>
+        <input type="radio" value="shipping" formControlName="deliveryOption" />
+        Envio a Domicilio
+      </label>
+      <label>
+        <input type="radio" value="pickup" formControlName="deliveryOption" />
+        Recogida en tienda
+      </label>
+    </div>
+
+    <label>
+      Dirección de Entrega
+      <input
+        type="text"
+        formControlName="address"
+        [disabled]="deliveryOption.value === 'pickup'"
+      />
+    </label>
+
+    ...
+  </fieldset>
+</form>

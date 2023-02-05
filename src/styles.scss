@@ -28,4 +28,5 @@ body {
   grid-template: 1fr / 1fr;
   width: 100vw;
   place-items: start center;
+  padding: var(--base-separation);
 }
