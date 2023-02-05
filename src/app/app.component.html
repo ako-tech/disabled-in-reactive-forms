@@ -17,7 +17,7 @@
       <input
         type="text"
         formControlName="address"
-        [disabled]="deliveryOption.value === 'pickup'"
+        [akoDisabledIf]="deliveryOption.value === 'pickup'"
       />
     </label>
   </fieldset>
