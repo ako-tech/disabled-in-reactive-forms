@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   deliveryForm = new FormGroup({
     deliveryOption: new FormControl('shipping'),
     address: new FormControl(''),
@@ -20,15 +20,18 @@ export class AppComponent implements OnInit {
     return this.deliveryForm.controls.address;
   }
 
-  subcription!: Subscription;
+  subcription?: Subscription;
 
   ngOnInit(): void {
     this.subcription = this.deliveryOption.valueChanges.subscribe(
-      (deliveryOption) => this.disableAddress(deliveryOption === 'pickup')
+      (deliveryOption) =>
+        deliveryOption === 'pickup'
+          ? this.address.disable()
+          : this.address.enable()
     );
   }
 
-  disableAddress(condition: boolean) {
-    condition ? this.address.disable() : this.address.enable();
+  ngOnDestroy(): void {
+    this.subcription?.unsubscribe();
   }
 }
