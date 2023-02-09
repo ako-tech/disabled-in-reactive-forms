@@ -48,6 +48,10 @@ label {
     border-radius: 4px;
     font-size: 0.8rem;
     padding: var(--half-separation);
+
+    &:nth-child(2) {
+      margin-top: var(--half-separation);
+    }
   }
 }
 
