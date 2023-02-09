@@ -50,3 +50,11 @@ label {
     padding: var(--half-separation);
   }
 }
+
+pre {
+  background: #fff;
+  margin-top: var(--base-separation);
+  padding: var(--base-separation);
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
