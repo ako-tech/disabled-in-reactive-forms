@@ -1,5 +1,5 @@
 import { Directive, Input } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import { ControlContainer, NgControl } from '@angular/forms';
 
 @Directive({
   selector: `
@@ -8,7 +8,7 @@ import { NgControl } from '@angular/forms';
   `,
   standalone: true,
 })
-export class DisabledIfDirective {
+export class ControlDisabledIfDirective {
   @Input('akoDisabledIf') set disabledIf(condition: boolean) {
     const control = this.ngControl.control;
 
@@ -16,4 +16,22 @@ export class DisabledIfDirective {
   }
 
   constructor(private ngControl: NgControl) {}
+}
+
+@Directive({
+  selector: `
+    [formGroup][akoDisabledIf],
+    [formGroupName][akoDisabledIf],
+    [formArrayName][akoDisabledIf]
+  `,
+  standalone: true,
+})
+export class ContainerDisabledIfDirective {
+  @Input('akoDisabledIf') set disabledIf(condition: boolean) {
+    const container = this.controlContainer.control;
+
+    condition ? container?.disable() : container?.enable();
+  }
+
+  constructor(private controlContainer: ControlContainer) {}
 }
